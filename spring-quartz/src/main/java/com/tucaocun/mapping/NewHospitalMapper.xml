@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tucaocun.dao.NewHospitalMapper" >
+  <resultMap id="BaseResultMap" type="com.tucaocun.entity.NewHospital" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="class_nname" property="classNname" jdbcType="VARCHAR" />
+    <result column="class_ename" property="classEname" jdbcType="VARCHAR" />
+    <result column="meta_key_words" property="metaKeyWords" jdbcType="VARCHAR" />
+    <result column="meta_descript" property="metaDescript" jdbcType="VARCHAR" />
+    <result column="seo_title" property="seoTitle" jdbcType="VARCHAR" />
+    <result column="navi_pic" property="naviPic" jdbcType="VARCHAR" />
+    <result column="is_show" property="isShow" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="is_del" property="isDel" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="VARCHAR" />
+    <result column="create_by_user_id" property="createByUserId" jdbcType="VARCHAR" />
+    <result column="change_by_user_id" property="changeByUserId" jdbcType="VARCHAR" />
+    <result column="change_time" property="changeTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.tucaocun.entity.NewHospitalWithBLOBs" extends="BaseResultMap" >
+    <result column="navi_class_url" property="naviClassUrl" jdbcType="LONGVARCHAR" />
+    <result column="navi_content" property="naviContent" jdbcType="LONGVARCHAR" />
+    <result column="navi_position" property="naviPosition" jdbcType="LONGVARCHAR" />
+    <result column="news_position" property="newsPosition" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, class_nname, class_ename, meta_key_words, meta_descript, seo_title, navi_pic, 
+    is_show, status, is_del, create_time, create_by_user_id, change_by_user_id, change_time
+  </sql>
+  <sql id="Blob_Column_List" >
+    navi_class_url, navi_content, navi_position, news_position
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from news_hospital
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from news_hospital
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.tucaocun.entity.NewHospitalWithBLOBs" >
+    insert into news_hospital (id, class_nname, class_ename, 
+      meta_key_words, meta_descript, seo_title, 
+      navi_pic, is_show, status, 
+      is_del, create_time, create_by_user_id, 
+      change_by_user_id, change_time, navi_class_url, 
+      navi_content, navi_position, news_position
+      )
+    values (#{id,jdbcType=VARCHAR}, #{classNname,jdbcType=VARCHAR}, #{classEname,jdbcType=VARCHAR}, 
+      #{metaKeyWords,jdbcType=VARCHAR}, #{metaDescript,jdbcType=VARCHAR}, #{seoTitle,jdbcType=VARCHAR}, 
+      #{naviPic,jdbcType=VARCHAR}, #{isShow,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
+      #{isDel,jdbcType=INTEGER}, #{createTime,jdbcType=VARCHAR}, #{createByUserId,jdbcType=VARCHAR}, 
+      #{changeByUserId,jdbcType=VARCHAR}, #{changeTime,jdbcType=TIMESTAMP}, #{naviClassUrl,jdbcType=LONGVARCHAR}, 
+      #{naviContent,jdbcType=LONGVARCHAR}, #{naviPosition,jdbcType=LONGVARCHAR}, #{newsPosition,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.tucaocun.entity.NewHospitalWithBLOBs" >
+    insert into news_hospital
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="classNname != null" >
+        class_nname,
+      </if>
+      <if test="classEname != null" >
+        class_ename,
+      </if>
+      <if test="metaKeyWords != null" >
+        meta_key_words,
+      </if>
+      <if test="metaDescript != null" >
+        meta_descript,
+      </if>
+      <if test="seoTitle != null" >
+        seo_title,
+      </if>
+      <if test="naviPic != null" >
+        navi_pic,
+      </if>
+      <if test="isShow != null" >
+        is_show,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="isDel != null" >
+        is_del,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="createByUserId != null" >
+        create_by_user_id,
+      </if>
+      <if test="changeByUserId != null" >
+        change_by_user_id,
+      </if>
+      <if test="changeTime != null" >
+        change_time,
+      </if>
+      <if test="naviClassUrl != null" >
+        navi_class_url,
+      </if>
+      <if test="naviContent != null" >
+        navi_content,
+      </if>
+      <if test="naviPosition != null" >
+        navi_position,
+      </if>
+      <if test="newsPosition != null" >
+        news_position,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="classNname != null" >
+        #{classNname,jdbcType=VARCHAR},
+      </if>
+      <if test="classEname != null" >
+        #{classEname,jdbcType=VARCHAR},
+      </if>
+      <if test="metaKeyWords != null" >
+        #{metaKeyWords,jdbcType=VARCHAR},
+      </if>
+      <if test="metaDescript != null" >
+        #{metaDescript,jdbcType=VARCHAR},
+      </if>
+      <if test="seoTitle != null" >
+        #{seoTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="naviPic != null" >
+        #{naviPic,jdbcType=VARCHAR},
+      </if>
+      <if test="isShow != null" >
+        #{isShow,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="isDel != null" >
+        #{isDel,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="createByUserId != null" >
+        #{createByUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="changeByUserId != null" >
+        #{changeByUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="changeTime != null" >
+        #{changeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="naviClassUrl != null" >
+        #{naviClassUrl,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="naviContent != null" >
+        #{naviContent,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="naviPosition != null" >
+        #{naviPosition,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="newsPosition != null" >
+        #{newsPosition,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tucaocun.entity.NewHospitalWithBLOBs" >
+    update news_hospital
+    <set >
+      <if test="classNname != null" >
+        class_nname = #{classNname,jdbcType=VARCHAR},
+      </if>
+      <if test="classEname != null" >
+        class_ename = #{classEname,jdbcType=VARCHAR},
+      </if>
+      <if test="metaKeyWords != null" >
+        meta_key_words = #{metaKeyWords,jdbcType=VARCHAR},
+      </if>
+      <if test="metaDescript != null" >
+        meta_descript = #{metaDescript,jdbcType=VARCHAR},
+      </if>
+      <if test="seoTitle != null" >
+        seo_title = #{seoTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="naviPic != null" >
+        navi_pic = #{naviPic,jdbcType=VARCHAR},
+      </if>
+      <if test="isShow != null" >
+        is_show = #{isShow,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="isDel != null" >
+        is_del = #{isDel,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="createByUserId != null" >
+        create_by_user_id = #{createByUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="changeByUserId != null" >
+        change_by_user_id = #{changeByUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="changeTime != null" >
+        change_time = #{changeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="naviClassUrl != null" >
+        navi_class_url = #{naviClassUrl,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="naviContent != null" >
+        navi_content = #{naviContent,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="naviPosition != null" >
+        navi_position = #{naviPosition,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="newsPosition != null" >
+        news_position = #{newsPosition,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.tucaocun.entity.NewHospitalWithBLOBs" >
+    update news_hospital
+    set class_nname = #{classNname,jdbcType=VARCHAR},
+      class_ename = #{classEname,jdbcType=VARCHAR},
+      meta_key_words = #{metaKeyWords,jdbcType=VARCHAR},
+      meta_descript = #{metaDescript,jdbcType=VARCHAR},
+      seo_title = #{seoTitle,jdbcType=VARCHAR},
+      navi_pic = #{naviPic,jdbcType=VARCHAR},
+      is_show = #{isShow,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      is_del = #{isDel,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=VARCHAR},
+      create_by_user_id = #{createByUserId,jdbcType=VARCHAR},
+      change_by_user_id = #{changeByUserId,jdbcType=VARCHAR},
+      change_time = #{changeTime,jdbcType=TIMESTAMP},
+      navi_class_url = #{naviClassUrl,jdbcType=LONGVARCHAR},
+      navi_content = #{naviContent,jdbcType=LONGVARCHAR},
+      navi_position = #{naviPosition,jdbcType=LONGVARCHAR},
+      news_position = #{newsPosition,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tucaocun.entity.NewHospital" >
+    update news_hospital
+    set class_nname = #{classNname,jdbcType=VARCHAR},
+      class_ename = #{classEname,jdbcType=VARCHAR},
+      meta_key_words = #{metaKeyWords,jdbcType=VARCHAR},
+      meta_descript = #{metaDescript,jdbcType=VARCHAR},
+      seo_title = #{seoTitle,jdbcType=VARCHAR},
+      navi_pic = #{naviPic,jdbcType=VARCHAR},
+      is_show = #{isShow,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      is_del = #{isDel,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=VARCHAR},
+      create_by_user_id = #{createByUserId,jdbcType=VARCHAR},
+      change_by_user_id = #{changeByUserId,jdbcType=VARCHAR},
+      change_time = #{changeTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

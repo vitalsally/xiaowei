@@ -1,0 +1,7 @@
+/target/
+.swp
+.class
+.bat
+.project
+.classpath
+.settings/*

@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tucaocun.dao.NewsTucaoMapper" >
+  <resultMap id="BaseResultMap" type="com.tucaocun.entity.NewsTucao" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="news_id" property="newsId" jdbcType="VARCHAR" />
+    <result column="support" property="support" jdbcType="INTEGER" />
+    <result column="opposition" property="opposition" jdbcType="INTEGER" />
+    <result column="tucao_id" property="tucaoId" jdbcType="VARCHAR" />
+    <result column="is_del" property="isDel" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="VARCHAR" />
+    <result column="change_time" property="changeTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, news_id, support, opposition, tucao_id, is_del, user_id, create_time, change_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from news_tucao
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from news_tucao
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.tucaocun.entity.NewsTucao" >
+    insert into news_tucao (id, news_id, support, 
+      opposition, tucao_id, is_del, 
+      user_id, create_time, change_time
+      )
+    values (#{id,jdbcType=VARCHAR}, #{newsId,jdbcType=VARCHAR}, #{support,jdbcType=INTEGER}, 
+      #{opposition,jdbcType=INTEGER}, #{tucaoId,jdbcType=VARCHAR}, #{isDel,jdbcType=INTEGER}, 
+      #{userId,jdbcType=VARCHAR}, #{createTime,jdbcType=VARCHAR}, #{changeTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.tucaocun.entity.NewsTucao" >
+    insert into news_tucao
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="newsId != null" >
+        news_id,
+      </if>
+      <if test="support != null" >
+        support,
+      </if>
+      <if test="opposition != null" >
+        opposition,
+      </if>
+      <if test="tucaoId != null" >
+        tucao_id,
+      </if>
+      <if test="isDel != null" >
+        is_del,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="changeTime != null" >
+        change_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="newsId != null" >
+        #{newsId,jdbcType=VARCHAR},
+      </if>
+      <if test="support != null" >
+        #{support,jdbcType=INTEGER},
+      </if>
+      <if test="opposition != null" >
+        #{opposition,jdbcType=INTEGER},
+      </if>
+      <if test="tucaoId != null" >
+        #{tucaoId,jdbcType=VARCHAR},
+      </if>
+      <if test="isDel != null" >
+        #{isDel,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="changeTime != null" >
+        #{changeTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tucaocun.entity.NewsTucao" >
+    update news_tucao
+    <set >
+      <if test="newsId != null" >
+        news_id = #{newsId,jdbcType=VARCHAR},
+      </if>
+      <if test="support != null" >
+        support = #{support,jdbcType=INTEGER},
+      </if>
+      <if test="opposition != null" >
+        opposition = #{opposition,jdbcType=INTEGER},
+      </if>
+      <if test="tucaoId != null" >
+        tucao_id = #{tucaoId,jdbcType=VARCHAR},
+      </if>
+      <if test="isDel != null" >
+        is_del = #{isDel,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="changeTime != null" >
+        change_time = #{changeTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tucaocun.entity.NewsTucao" >
+    update news_tucao
+    set news_id = #{newsId,jdbcType=VARCHAR},
+      support = #{support,jdbcType=INTEGER},
+      opposition = #{opposition,jdbcType=INTEGER},
+      tucao_id = #{tucaoId,jdbcType=VARCHAR},
+      is_del = #{isDel,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=VARCHAR},
+      change_time = #{changeTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tucaocun.dao.NewDetailsMapper" >
+  <resultMap id="BaseResultMap" type="com.tucaocun.entity.NewDetails" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="new_id" property="newId" jdbcType="VARCHAR" />
+    <result column="service_full_title" property="serviceFullTitle" jdbcType="VARCHAR" />
+    <result column="service_img" property="serviceImg" jdbcType="VARCHAR" />
+    <result column="service_pdate_src" property="servicePdateSrc" jdbcType="VARCHAR" />
+    <result column="service_img_width" property="serviceImgWidth" jdbcType="VARCHAR" />
+    <result column="service_src" property="serviceSrc" jdbcType="VARCHAR" />
+    <result column="service_pdate" property="servicePdate" jdbcType="VARCHAR" />
+    <result column="service_img_length" property="serviceImgLength" jdbcType="VARCHAR" />
+    <result column="service_title" property="serviceTitle" jdbcType="VARCHAR" />
+    <result column="service_content" property="serviceContent" jdbcType="VARCHAR" />
+    <result column="service_url" property="serviceUrl" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="VARCHAR" />
+    <result column="change_time" property="changeTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, new_id, service_full_title, service_img, service_pdate_src, service_img_width, 
+    service_src, service_pdate, service_img_length, service_title, service_content, service_url, 
+    create_time, change_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from news_details
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from news_details
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.tucaocun.entity.NewDetails" >
+    insert into news_details (id, new_id, service_full_title, 
+      service_img, service_pdate_src, service_img_width, 
+      service_src, service_pdate, service_img_length, 
+      service_title, service_content, service_url, 
+      create_time, change_time)
+    values (#{id,jdbcType=VARCHAR}, #{newId,jdbcType=VARCHAR}, #{serviceFullTitle,jdbcType=VARCHAR}, 
+      #{serviceImg,jdbcType=VARCHAR}, #{servicePdateSrc,jdbcType=VARCHAR}, #{serviceImgWidth,jdbcType=VARCHAR}, 
+      #{serviceSrc,jdbcType=VARCHAR}, #{servicePdate,jdbcType=VARCHAR}, #{serviceImgLength,jdbcType=VARCHAR}, 
+      #{serviceTitle,jdbcType=VARCHAR}, #{serviceContent,jdbcType=VARCHAR}, #{serviceUrl,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=VARCHAR}, #{changeTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tucaocun.entity.NewDetails" >
+    insert into news_details
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="newId != null" >
+        new_id,
+      </if>
+      <if test="serviceFullTitle != null" >
+        service_full_title,
+      </if>
+      <if test="serviceImg != null" >
+        service_img,
+      </if>
+      <if test="servicePdateSrc != null" >
+        service_pdate_src,
+      </if>
+      <if test="serviceImgWidth != null" >
+        service_img_width,
+      </if>
+      <if test="serviceSrc != null" >
+        service_src,
+      </if>
+      <if test="servicePdate != null" >
+        service_pdate,
+      </if>
+      <if test="serviceImgLength != null" >
+        service_img_length,
+      </if>
+      <if test="serviceTitle != null" >
+        service_title,
+      </if>
+      <if test="serviceContent != null" >
+        service_content,
+      </if>
+      <if test="serviceUrl != null" >
+        service_url,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="changeTime != null" >
+        change_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="newId != null" >
+        #{newId,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceFullTitle != null" >
+        #{serviceFullTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceImg != null" >
+        #{serviceImg,jdbcType=VARCHAR},
+      </if>
+      <if test="servicePdateSrc != null" >
+        #{servicePdateSrc,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceImgWidth != null" >
+        #{serviceImgWidth,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceSrc != null" >
+        #{serviceSrc,jdbcType=VARCHAR},
+      </if>
+      <if test="servicePdate != null" >
+        #{servicePdate,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceImgLength != null" >
+        #{serviceImgLength,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceTitle != null" >
+        #{serviceTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceContent != null" >
+        #{serviceContent,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceUrl != null" >
+        #{serviceUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="changeTime != null" >
+        #{changeTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tucaocun.entity.NewDetails" >
+    update news_details
+    <set >
+      <if test="newId != null" >
+        new_id = #{newId,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceFullTitle != null" >
+        service_full_title = #{serviceFullTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceImg != null" >
+        service_img = #{serviceImg,jdbcType=VARCHAR},
+      </if>
+      <if test="servicePdateSrc != null" >
+        service_pdate_src = #{servicePdateSrc,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceImgWidth != null" >
+        service_img_width = #{serviceImgWidth,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceSrc != null" >
+        service_src = #{serviceSrc,jdbcType=VARCHAR},
+      </if>
+      <if test="servicePdate != null" >
+        service_pdate = #{servicePdate,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceImgLength != null" >
+        service_img_length = #{serviceImgLength,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceTitle != null" >
+        service_title = #{serviceTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceContent != null" >
+        service_content = #{serviceContent,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceUrl != null" >
+        service_url = #{serviceUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="changeTime != null" >
+        change_time = #{changeTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tucaocun.entity.NewDetails" >
+    update news_details
+    set new_id = #{newId,jdbcType=VARCHAR},
+      service_full_title = #{serviceFullTitle,jdbcType=VARCHAR},
+      service_img = #{serviceImg,jdbcType=VARCHAR},
+      service_pdate_src = #{servicePdateSrc,jdbcType=VARCHAR},
+      service_img_width = #{serviceImgWidth,jdbcType=VARCHAR},
+      service_src = #{serviceSrc,jdbcType=VARCHAR},
+      service_pdate = #{servicePdate,jdbcType=VARCHAR},
+      service_img_length = #{serviceImgLength,jdbcType=VARCHAR},
+      service_title = #{serviceTitle,jdbcType=VARCHAR},
+      service_content = #{serviceContent,jdbcType=VARCHAR},
+      service_url = #{serviceUrl,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=VARCHAR},
+      change_time = #{changeTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

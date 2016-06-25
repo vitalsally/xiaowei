@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tucaocun.dao.NewsCentontMapper" >
+  <resultMap id="BaseResultMap" type="com.tucaocun.entity.NewsCentont" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="hospital_id" property="hospitalId" jdbcType="VARCHAR" />
+    <result column="news_type" property="newsType" jdbcType="VARCHAR" />
+    <result column="author" property="author" jdbcType="VARCHAR" />
+    <result column="click" property="click" jdbcType="INTEGER" />
+    <result column="is_top" property="isTop" jdbcType="INTEGER" />
+    <result column="is_recomment" property="isRecomment" jdbcType="INTEGER" />
+    <result column="home_pic" property="homePic" jdbcType="VARCHAR" />
+    <result column="note" property="note" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="VARCHAR" />
+    <result column="create_by" property="createBy" jdbcType="VARCHAR" />
+    <result column="change_by" property="changeBy" jdbcType="VARCHAR" />
+    <result column="change_time" property="changeTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.tucaocun.entity.NewsCentontWithBLOBs" extends="BaseResultMap" >
+    <result column="news_title" property="newsTitle" jdbcType="LONGVARCHAR" />
+    <result column="news_stitle" property="newsStitle" jdbcType="LONGVARCHAR" />
+    <result column="source" property="source" jdbcType="LONGVARCHAR" />
+    <result column="tags" property="tags" jdbcType="LONGVARCHAR" />
+    <result column="navi_content" property="naviContent" jdbcType="LONGVARCHAR" />
+    <result column="content" property="content" jdbcType="LONGVARCHAR" />
+    <result column="meta_key_words" property="metaKeyWords" jdbcType="LONGVARCHAR" />
+    <result column="meta_doc" property="metaDoc" jdbcType="LONGVARCHAR" />
+    <result column="seo_title" property="seoTitle" jdbcType="LONGVARCHAR" />
+    <result column="seo_tags" property="seoTags" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, hospital_id, news_type, author, click, is_top, is_recomment, home_pic, note, 
+    status, create_time, create_by, change_by, change_time
+  </sql>
+  <sql id="Blob_Column_List" >
+    news_title, news_stitle, source, tags, navi_content, content, meta_key_words, meta_doc, 
+    seo_title, seo_tags
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from news_centont
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from news_centont
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.tucaocun.entity.NewsCentontWithBLOBs" >
+    insert into news_centont (id, hospital_id, news_type, 
+      author, click, is_top, 
+      is_recomment, home_pic, note, 
+      status, create_time, create_by, 
+      change_by, change_time, news_title, 
+      news_stitle, source, tags, 
+      navi_content, content, meta_key_words, 
+      meta_doc, seo_title, seo_tags
+      )
+    values (#{id,jdbcType=VARCHAR}, #{hospitalId,jdbcType=VARCHAR}, #{newsType,jdbcType=VARCHAR}, 
+      #{author,jdbcType=VARCHAR}, #{click,jdbcType=INTEGER}, #{isTop,jdbcType=INTEGER}, 
+      #{isRecomment,jdbcType=INTEGER}, #{homePic,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR}, #{createTime,jdbcType=VARCHAR}, #{createBy,jdbcType=VARCHAR}, 
+      #{changeBy,jdbcType=VARCHAR}, #{changeTime,jdbcType=TIMESTAMP}, #{newsTitle,jdbcType=LONGVARCHAR}, 
+      #{newsStitle,jdbcType=LONGVARCHAR}, #{source,jdbcType=LONGVARCHAR}, #{tags,jdbcType=LONGVARCHAR}, 
+      #{naviContent,jdbcType=LONGVARCHAR}, #{content,jdbcType=LONGVARCHAR}, #{metaKeyWords,jdbcType=LONGVARCHAR}, 
+      #{metaDoc,jdbcType=LONGVARCHAR}, #{seoTitle,jdbcType=LONGVARCHAR}, #{seoTags,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.tucaocun.entity.NewsCentontWithBLOBs" >
+    insert into news_centont
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="hospitalId != null" >
+        hospital_id,
+      </if>
+      <if test="newsType != null" >
+        news_type,
+      </if>
+      <if test="author != null" >
+        author,
+      </if>
+      <if test="click != null" >
+        click,
+      </if>
+      <if test="isTop != null" >
+        is_top,
+      </if>
+      <if test="isRecomment != null" >
+        is_recomment,
+      </if>
+      <if test="homePic != null" >
+        home_pic,
+      </if>
+      <if test="note != null" >
+        note,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="createBy != null" >
+        create_by,
+      </if>
+      <if test="changeBy != null" >
+        change_by,
+      </if>
+      <if test="changeTime != null" >
+        change_time,
+      </if>
+      <if test="newsTitle != null" >
+        news_title,
+      </if>
+      <if test="newsStitle != null" >
+        news_stitle,
+      </if>
+      <if test="source != null" >
+        source,
+      </if>
+      <if test="tags != null" >
+        tags,
+      </if>
+      <if test="naviContent != null" >
+        navi_content,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="metaKeyWords != null" >
+        meta_key_words,
+      </if>
+      <if test="metaDoc != null" >
+        meta_doc,
+      </if>
+      <if test="seoTitle != null" >
+        seo_title,
+      </if>
+      <if test="seoTags != null" >
+        seo_tags,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="hospitalId != null" >
+        #{hospitalId,jdbcType=VARCHAR},
+      </if>
+      <if test="newsType != null" >
+        #{newsType,jdbcType=VARCHAR},
+      </if>
+      <if test="author != null" >
+        #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="click != null" >
+        #{click,jdbcType=INTEGER},
+      </if>
+      <if test="isTop != null" >
+        #{isTop,jdbcType=INTEGER},
+      </if>
+      <if test="isRecomment != null" >
+        #{isRecomment,jdbcType=INTEGER},
+      </if>
+      <if test="homePic != null" >
+        #{homePic,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null" >
+        #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null" >
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="changeBy != null" >
+        #{changeBy,jdbcType=VARCHAR},
+      </if>
+      <if test="changeTime != null" >
+        #{changeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="newsTitle != null" >
+        #{newsTitle,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="newsStitle != null" >
+        #{newsStitle,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="source != null" >
+        #{source,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="tags != null" >
+        #{tags,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="naviContent != null" >
+        #{naviContent,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="metaKeyWords != null" >
+        #{metaKeyWords,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="metaDoc != null" >
+        #{metaDoc,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="seoTitle != null" >
+        #{seoTitle,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="seoTags != null" >
+        #{seoTags,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tucaocun.entity.NewsCentontWithBLOBs" >
+    update news_centont
+    <set >
+      <if test="hospitalId != null" >
+        hospital_id = #{hospitalId,jdbcType=VARCHAR},
+      </if>
+      <if test="newsType != null" >
+        news_type = #{newsType,jdbcType=VARCHAR},
+      </if>
+      <if test="author != null" >
+        author = #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="click != null" >
+        click = #{click,jdbcType=INTEGER},
+      </if>
+      <if test="isTop != null" >
+        is_top = #{isTop,jdbcType=INTEGER},
+      </if>
+      <if test="isRecomment != null" >
+        is_recomment = #{isRecomment,jdbcType=INTEGER},
+      </if>
+      <if test="homePic != null" >
+        home_pic = #{homePic,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null" >
+        note = #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null" >
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="changeBy != null" >
+        change_by = #{changeBy,jdbcType=VARCHAR},
+      </if>
+      <if test="changeTime != null" >
+        change_time = #{changeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="newsTitle != null" >
+        news_title = #{newsTitle,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="newsStitle != null" >
+        news_stitle = #{newsStitle,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="source != null" >
+        source = #{source,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="tags != null" >
+        tags = #{tags,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="naviContent != null" >
+        navi_content = #{naviContent,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="metaKeyWords != null" >
+        meta_key_words = #{metaKeyWords,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="metaDoc != null" >
+        meta_doc = #{metaDoc,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="seoTitle != null" >
+        seo_title = #{seoTitle,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="seoTags != null" >
+        seo_tags = #{seoTags,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.tucaocun.entity.NewsCentontWithBLOBs" >
+    update news_centont
+    set hospital_id = #{hospitalId,jdbcType=VARCHAR},
+      news_type = #{newsType,jdbcType=VARCHAR},
+      author = #{author,jdbcType=VARCHAR},
+      click = #{click,jdbcType=INTEGER},
+      is_top = #{isTop,jdbcType=INTEGER},
+      is_recomment = #{isRecomment,jdbcType=INTEGER},
+      home_pic = #{homePic,jdbcType=VARCHAR},
+      note = #{note,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=VARCHAR},
+      create_by = #{createBy,jdbcType=VARCHAR},
+      change_by = #{changeBy,jdbcType=VARCHAR},
+      change_time = #{changeTime,jdbcType=TIMESTAMP},
+      news_title = #{newsTitle,jdbcType=LONGVARCHAR},
+      news_stitle = #{newsStitle,jdbcType=LONGVARCHAR},
+      source = #{source,jdbcType=LONGVARCHAR},
+      tags = #{tags,jdbcType=LONGVARCHAR},
+      navi_content = #{naviContent,jdbcType=LONGVARCHAR},
+      content = #{content,jdbcType=LONGVARCHAR},
+      meta_key_words = #{metaKeyWords,jdbcType=LONGVARCHAR},
+      meta_doc = #{metaDoc,jdbcType=LONGVARCHAR},
+      seo_title = #{seoTitle,jdbcType=LONGVARCHAR},
+      seo_tags = #{seoTags,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tucaocun.entity.NewsCentont" >
+    update news_centont
+    set hospital_id = #{hospitalId,jdbcType=VARCHAR},
+      news_type = #{newsType,jdbcType=VARCHAR},
+      author = #{author,jdbcType=VARCHAR},
+      click = #{click,jdbcType=INTEGER},
+      is_top = #{isTop,jdbcType=INTEGER},
+      is_recomment = #{isRecomment,jdbcType=INTEGER},
+      home_pic = #{homePic,jdbcType=VARCHAR},
+      note = #{note,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=VARCHAR},
+      create_by = #{createBy,jdbcType=VARCHAR},
+      change_by = #{changeBy,jdbcType=VARCHAR},
+      change_time = #{changeTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  
+  
+  
+    <select id="selectByTitle" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from news_centont
+    where news_title = #{title,jdbcType=VARCHAR}
+  </select>
+</mapper>

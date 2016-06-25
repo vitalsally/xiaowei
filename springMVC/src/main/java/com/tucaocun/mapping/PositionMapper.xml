@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tucaocun.dao.PositionMapper" >
+  <resultMap id="BaseResultMap" type="com.tucaocun.entity.Position" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="position_name" property="positionName" jdbcType="VARCHAR" />
+    <result column="position_group" property="positionGroup" jdbcType="VARCHAR" />
+    <result column="position_lv" property="positionLv" jdbcType="INTEGER" />
+    <result column="is_del" property="isDel" jdbcType="INTEGER" />
+    <result column="is_change" property="isChange" jdbcType="INTEGER" />
+    <result column="change_id" property="changeId" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="create_by" property="createBy" jdbcType="VARCHAR" />
+    <result column="change_time" property="changeTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, position_name, position_group, position_lv, is_del, is_change, change_id, create_time, 
+    create_by, change_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from a_position
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from a_position
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.tucaocun.entity.Position" >
+    insert into a_position (id, position_name, position_group, 
+      position_lv, is_del, is_change, 
+      change_id, create_time, create_by, 
+      change_time)
+    values (#{id,jdbcType=VARCHAR}, #{positionName,jdbcType=VARCHAR}, #{positionGroup,jdbcType=VARCHAR}, 
+      #{positionLv,jdbcType=INTEGER}, #{isDel,jdbcType=INTEGER}, #{isChange,jdbcType=INTEGER}, 
+      #{changeId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{createBy,jdbcType=VARCHAR}, 
+      #{changeTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tucaocun.entity.Position" >
+    insert into a_position
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="positionName != null" >
+        position_name,
+      </if>
+      <if test="positionGroup != null" >
+        position_group,
+      </if>
+      <if test="positionLv != null" >
+        position_lv,
+      </if>
+      <if test="isDel != null" >
+        is_del,
+      </if>
+      <if test="isChange != null" >
+        is_change,
+      </if>
+      <if test="changeId != null" >
+        change_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="createBy != null" >
+        create_by,
+      </if>
+      <if test="changeTime != null" >
+        change_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="positionName != null" >
+        #{positionName,jdbcType=VARCHAR},
+      </if>
+      <if test="positionGroup != null" >
+        #{positionGroup,jdbcType=VARCHAR},
+      </if>
+      <if test="positionLv != null" >
+        #{positionLv,jdbcType=INTEGER},
+      </if>
+      <if test="isDel != null" >
+        #{isDel,jdbcType=INTEGER},
+      </if>
+      <if test="isChange != null" >
+        #{isChange,jdbcType=INTEGER},
+      </if>
+      <if test="changeId != null" >
+        #{changeId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null" >
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="changeTime != null" >
+        #{changeTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tucaocun.entity.Position" >
+    update a_position
+    <set >
+      <if test="positionName != null" >
+        position_name = #{positionName,jdbcType=VARCHAR},
+      </if>
+      <if test="positionGroup != null" >
+        position_group = #{positionGroup,jdbcType=VARCHAR},
+      </if>
+      <if test="positionLv != null" >
+        position_lv = #{positionLv,jdbcType=INTEGER},
+      </if>
+      <if test="isDel != null" >
+        is_del = #{isDel,jdbcType=INTEGER},
+      </if>
+      <if test="isChange != null" >
+        is_change = #{isChange,jdbcType=INTEGER},
+      </if>
+      <if test="changeId != null" >
+        change_id = #{changeId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null" >
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="changeTime != null" >
+        change_time = #{changeTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tucaocun.entity.Position" >
+    update a_position
+    set position_name = #{positionName,jdbcType=VARCHAR},
+      position_group = #{positionGroup,jdbcType=VARCHAR},
+      position_lv = #{positionLv,jdbcType=INTEGER},
+      is_del = #{isDel,jdbcType=INTEGER},
+      is_change = #{isChange,jdbcType=INTEGER},
+      change_id = #{changeId,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_by = #{createBy,jdbcType=VARCHAR},
+      change_time = #{changeTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

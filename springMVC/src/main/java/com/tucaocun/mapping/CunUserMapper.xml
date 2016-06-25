@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tucaocun.dao.CunUserMapper" >
+  <resultMap id="BaseResultMap" type="com.tucaocun.entity.CunUser" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="cun_id" property="cunId" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="is_change" property="isChange" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="VARCHAR" />
+    <result column="change_time" property="changeTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="BaseResultMapDto" type="com.tucaocun.entity.Cun" >
+   <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="cun_name" property="cunName" jdbcType="VARCHAR" />
+    <result column="cun_call" property="cunCall" jdbcType="VARCHAR" />
+    <result column="create_by" property="createBy" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="VARCHAR" />
+    <result column="user_num" property="userNum" jdbcType="INTEGER" />
+    <result column="cun_along" property="cunAlong" jdbcType="VARCHAR" />
+    <result column="is_change" property="isChange" jdbcType="INTEGER" />
+    <result column="change_time" property="changeTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    id, cun_id, user_id, is_change, create_time, change_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from a_cun_user
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from a_cun_user
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.tucaocun.entity.CunUser" >
+    insert into a_cun_user (id, cun_id, user_id, 
+      is_change, create_time, change_time
+      )
+    values (#{id,jdbcType=VARCHAR}, #{cunId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, 
+      #{isChange,jdbcType=INTEGER}, #{createTime,jdbcType=VARCHAR}, #{changeTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.tucaocun.entity.CunUser" >
+    insert into a_cun_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="cunId != null" >
+        cun_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="isChange != null" >
+        is_change,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="changeTime != null" >
+        change_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="cunId != null" >
+        #{cunId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="isChange != null" >
+        #{isChange,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="changeTime != null" >
+        #{changeTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tucaocun.entity.CunUser" >
+    update a_cun_user
+    <set >
+      <if test="cunId != null" >
+        cun_id = #{cunId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="isChange != null" >
+        is_change = #{isChange,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="changeTime != null" >
+        change_time = #{changeTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tucaocun.entity.CunUser" >
+    update a_cun_user
+    set cun_id = #{cunId,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=VARCHAR},
+      is_change = #{isChange,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=VARCHAR},
+      change_time = #{changeTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <!-- 查询每个团体的成员数量 -->
+   <select id="selectUserOfCunUser" resultMap="BaseResultMapDto" parameterType="java.lang.String" >
+     SELECT cun_id id,COUNT(cun_id) user_num FROM a_cun_user GROUP BY cun_id
+  </select>
+
+  
+</mapper>

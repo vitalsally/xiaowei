@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tucaocun.dao.HonorPunishmentMapper" >
+  <resultMap id="BaseResultMap" type="com.tucaocun.entity.HonorPunishment" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="honor_book_id" property="honorBookId" jdbcType="VARCHAR" />
+    <result column="book_url" property="bookUrl" jdbcType="VARCHAR" />
+    <result column="is_del" property="isDel" jdbcType="INTEGER" />
+    <result column="action_time" property="actionTime" jdbcType="VARCHAR" />
+    <result column="change_time" property="changeTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_id, type, honor_book_id, book_url, is_del, action_time, change_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from a_honor_punishment
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from a_honor_punishment
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.tucaocun.entity.HonorPunishment" >
+    insert into a_honor_punishment (id, user_id, type, 
+      honor_book_id, book_url, is_del, 
+      action_time, change_time)
+    values (#{id,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, 
+      #{honorBookId,jdbcType=VARCHAR}, #{bookUrl,jdbcType=VARCHAR}, #{isDel,jdbcType=INTEGER}, 
+      #{actionTime,jdbcType=VARCHAR}, #{changeTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tucaocun.entity.HonorPunishment" >
+    insert into a_honor_punishment
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="honorBookId != null" >
+        honor_book_id,
+      </if>
+      <if test="bookUrl != null" >
+        book_url,
+      </if>
+      <if test="isDel != null" >
+        is_del,
+      </if>
+      <if test="actionTime != null" >
+        action_time,
+      </if>
+      <if test="changeTime != null" >
+        change_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="honorBookId != null" >
+        #{honorBookId,jdbcType=VARCHAR},
+      </if>
+      <if test="bookUrl != null" >
+        #{bookUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="isDel != null" >
+        #{isDel,jdbcType=INTEGER},
+      </if>
+      <if test="actionTime != null" >
+        #{actionTime,jdbcType=VARCHAR},
+      </if>
+      <if test="changeTime != null" >
+        #{changeTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tucaocun.entity.HonorPunishment" >
+    update a_honor_punishment
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="honorBookId != null" >
+        honor_book_id = #{honorBookId,jdbcType=VARCHAR},
+      </if>
+      <if test="bookUrl != null" >
+        book_url = #{bookUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="isDel != null" >
+        is_del = #{isDel,jdbcType=INTEGER},
+      </if>
+      <if test="actionTime != null" >
+        action_time = #{actionTime,jdbcType=VARCHAR},
+      </if>
+      <if test="changeTime != null" >
+        change_time = #{changeTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tucaocun.entity.HonorPunishment" >
+    update a_honor_punishment
+    set user_id = #{userId,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
+      honor_book_id = #{honorBookId,jdbcType=VARCHAR},
+      book_url = #{bookUrl,jdbcType=VARCHAR},
+      is_del = #{isDel,jdbcType=INTEGER},
+      action_time = #{actionTime,jdbcType=VARCHAR},
+      change_time = #{changeTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

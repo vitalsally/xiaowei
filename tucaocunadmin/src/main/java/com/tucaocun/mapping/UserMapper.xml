@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tucaocun.dao.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.tucaocun.entity.User" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="pwd" property="pwd" jdbcType="VARCHAR" />
+    <result column="id_card" property="idCard" jdbcType="VARCHAR" />
+    <result column="real_name" property="realName" jdbcType="VARCHAR" />
+    <result column="cun_id" property="cunId" jdbcType="VARCHAR" />
+    <result column="lv" property="lv" jdbcType="VARCHAR" />
+    <result column="hava_vote" property="havaVote" jdbcType="INTEGER" />
+    <result column="punishment_vote" property="punishmentVote" jdbcType="INTEGER" />
+    <result column="zhifubao" property="zhifubao" jdbcType="VARCHAR" />
+    <result column="is_del" property="isDel" jdbcType="INTEGER" />
+    <result column="is_limit" property="isLimit" jdbcType="INTEGER" />
+    <result column="register_time" property="registerTime" jdbcType="VARCHAR" />
+    <result column="active_degree" property="activeDegree" jdbcType="INTEGER" />
+    <result column="change_time" property="changeTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, pwd, id_card, real_name, cun_id, lv, hava_vote, punishment_vote, zhifubao, 
+    is_del, is_limit, register_time, active_degree, change_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from a_user
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from a_user
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.tucaocun.entity.User" >
+    insert into a_user (id, name, pwd, 
+      id_card, real_name, cun_id, 
+      lv, hava_vote, punishment_vote, 
+      zhifubao, is_del, is_limit, 
+      register_time, active_degree, change_time
+      )
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{pwd,jdbcType=VARCHAR}, 
+      #{idCard,jdbcType=VARCHAR}, #{realName,jdbcType=VARCHAR}, #{cunId,jdbcType=VARCHAR}, 
+      #{lv,jdbcType=VARCHAR}, #{havaVote,jdbcType=INTEGER}, #{punishmentVote,jdbcType=INTEGER}, 
+      #{zhifubao,jdbcType=VARCHAR}, #{isDel,jdbcType=INTEGER}, #{isLimit,jdbcType=INTEGER}, 
+      #{registerTime,jdbcType=VARCHAR}, #{activeDegree,jdbcType=INTEGER}, #{changeTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.tucaocun.entity.User" >
+    insert into a_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="pwd != null" >
+        pwd,
+      </if>
+      <if test="idCard != null" >
+        id_card,
+      </if>
+      <if test="realName != null" >
+        real_name,
+      </if>
+      <if test="cunId != null" >
+        cun_id,
+      </if>
+      <if test="lv != null" >
+        lv,
+      </if>
+      <if test="havaVote != null" >
+        hava_vote,
+      </if>
+      <if test="punishmentVote != null" >
+        punishment_vote,
+      </if>
+      <if test="zhifubao != null" >
+        zhifubao,
+      </if>
+      <if test="isDel != null" >
+        is_del,
+      </if>
+      <if test="isLimit != null" >
+        is_limit,
+      </if>
+      <if test="registerTime != null" >
+        register_time,
+      </if>
+      <if test="activeDegree != null" >
+        active_degree,
+      </if>
+      <if test="changeTime != null" >
+        change_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="pwd != null" >
+        #{pwd,jdbcType=VARCHAR},
+      </if>
+      <if test="idCard != null" >
+        #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null" >
+        #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="cunId != null" >
+        #{cunId,jdbcType=VARCHAR},
+      </if>
+      <if test="lv != null" >
+        #{lv,jdbcType=VARCHAR},
+      </if>
+      <if test="havaVote != null" >
+        #{havaVote,jdbcType=INTEGER},
+      </if>
+      <if test="punishmentVote != null" >
+        #{punishmentVote,jdbcType=INTEGER},
+      </if>
+      <if test="zhifubao != null" >
+        #{zhifubao,jdbcType=VARCHAR},
+      </if>
+      <if test="isDel != null" >
+        #{isDel,jdbcType=INTEGER},
+      </if>
+      <if test="isLimit != null" >
+        #{isLimit,jdbcType=INTEGER},
+      </if>
+      <if test="registerTime != null" >
+        #{registerTime,jdbcType=VARCHAR},
+      </if>
+      <if test="activeDegree != null" >
+        #{activeDegree,jdbcType=INTEGER},
+      </if>
+      <if test="changeTime != null" >
+        #{changeTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tucaocun.entity.User" >
+    update a_user
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="pwd != null" >
+        pwd = #{pwd,jdbcType=VARCHAR},
+      </if>
+      <if test="idCard != null" >
+        id_card = #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null" >
+        real_name = #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="cunId != null" >
+        cun_id = #{cunId,jdbcType=VARCHAR},
+      </if>
+      <if test="lv != null" >
+        lv = #{lv,jdbcType=VARCHAR},
+      </if>
+      <if test="havaVote != null" >
+        hava_vote = #{havaVote,jdbcType=INTEGER},
+      </if>
+      <if test="punishmentVote != null" >
+        punishment_vote = #{punishmentVote,jdbcType=INTEGER},
+      </if>
+      <if test="zhifubao != null" >
+        zhifubao = #{zhifubao,jdbcType=VARCHAR},
+      </if>
+      <if test="isDel != null" >
+        is_del = #{isDel,jdbcType=INTEGER},
+      </if>
+      <if test="isLimit != null" >
+        is_limit = #{isLimit,jdbcType=INTEGER},
+      </if>
+      <if test="registerTime != null" >
+        register_time = #{registerTime,jdbcType=VARCHAR},
+      </if>
+      <if test="activeDegree != null" >
+        active_degree = #{activeDegree,jdbcType=INTEGER},
+      </if>
+      <if test="changeTime != null" >
+        change_time = #{changeTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tucaocun.entity.User" >
+    update a_user
+    set name = #{name,jdbcType=VARCHAR},
+      pwd = #{pwd,jdbcType=VARCHAR},
+      id_card = #{idCard,jdbcType=VARCHAR},
+      real_name = #{realName,jdbcType=VARCHAR},
+      cun_id = #{cunId,jdbcType=VARCHAR},
+      lv = #{lv,jdbcType=VARCHAR},
+      hava_vote = #{havaVote,jdbcType=INTEGER},
+      punishment_vote = #{punishmentVote,jdbcType=INTEGER},
+      zhifubao = #{zhifubao,jdbcType=VARCHAR},
+      is_del = #{isDel,jdbcType=INTEGER},
+      is_limit = #{isLimit,jdbcType=INTEGER},
+      register_time = #{registerTime,jdbcType=VARCHAR},
+      active_degree = #{activeDegree,jdbcType=INTEGER},
+      change_time = #{changeTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

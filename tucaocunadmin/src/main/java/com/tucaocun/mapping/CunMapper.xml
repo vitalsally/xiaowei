@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tucaocun.dao.CunMapper" >
+  <resultMap id="BaseResultMap" type="com.tucaocun.entity.Cun" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="cun_name" property="cunName" jdbcType="VARCHAR" />
+    <result column="cun_call" property="cunCall" jdbcType="VARCHAR" />
+    <result column="create_by" property="createBy" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="VARCHAR" />
+    <result column="cun_along" property="cunAlong" jdbcType="VARCHAR" />
+    <result column="is_change" property="isChange" jdbcType="INTEGER" />
+    <result column="change_time" property="changeTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, cun_name, cun_call, create_by, create_time, cun_along, is_change, change_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from a_cun
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from a_cun
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.tucaocun.entity.Cun" >
+    insert into a_cun (id, cun_name, cun_call, 
+      create_by, create_time, cun_along, 
+      is_change, change_time)
+    values (#{id,jdbcType=VARCHAR}, #{cunName,jdbcType=VARCHAR}, #{cunCall,jdbcType=VARCHAR}, 
+      #{createBy,jdbcType=VARCHAR}, #{createTime,jdbcType=VARCHAR}, #{cunAlong,jdbcType=VARCHAR}, 
+      #{isChange,jdbcType=INTEGER}, #{changeTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tucaocun.entity.Cun" >
+    insert into a_cun
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="cunName != null" >
+        cun_name,
+      </if>
+      <if test="cunCall != null" >
+        cun_call,
+      </if>
+      <if test="createBy != null" >
+        create_by,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="cunAlong != null" >
+        cun_along,
+      </if>
+      <if test="isChange != null" >
+        is_change,
+      </if>
+      <if test="changeTime != null" >
+        change_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="cunName != null" >
+        #{cunName,jdbcType=VARCHAR},
+      </if>
+      <if test="cunCall != null" >
+        #{cunCall,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null" >
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="cunAlong != null" >
+        #{cunAlong,jdbcType=VARCHAR},
+      </if>
+      <if test="isChange != null" >
+        #{isChange,jdbcType=INTEGER},
+      </if>
+      <if test="changeTime != null" >
+        #{changeTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tucaocun.entity.Cun" >
+    update a_cun
+    <set >
+      <if test="cunName != null" >
+        cun_name = #{cunName,jdbcType=VARCHAR},
+      </if>
+      <if test="cunCall != null" >
+        cun_call = #{cunCall,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null" >
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="cunAlong != null" >
+        cun_along = #{cunAlong,jdbcType=VARCHAR},
+      </if>
+      <if test="isChange != null" >
+        is_change = #{isChange,jdbcType=INTEGER},
+      </if>
+      <if test="changeTime != null" >
+        change_time = #{changeTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tucaocun.entity.Cun" >
+    update a_cun
+    set cun_name = #{cunName,jdbcType=VARCHAR},
+      cun_call = #{cunCall,jdbcType=VARCHAR},
+      create_by = #{createBy,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=VARCHAR},
+      cun_along = #{cunAlong,jdbcType=VARCHAR},
+      is_change = #{isChange,jdbcType=INTEGER},
+      change_time = #{changeTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
